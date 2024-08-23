@@ -2,12 +2,12 @@ const Postmodel = require("../Models/Postmodel");
 module.exports.createPost = async (req, res) => {
   try {
     const { title, description } = req.body;
-    const id = req.user.id;
+    // const id = req.user.id;
 
     const post = await Postmodel.create({
       title: title,
       description: description,
-      userId: id,
+      // userId: id,
     });
 
     if (!post)
@@ -30,7 +30,7 @@ module.exports.createPost = async (req, res) => {
 
 module.exports.userPost = async (req, res) => {
   try {
-    const id = req.user.id;
+    // const id = req.user.id;
     const post = await Postmodel.find({ userId: id, isDeleted: false });
     if (!post)
       return res.status(500).json({
@@ -51,8 +51,8 @@ module.exports.userPost = async (req, res) => {
 
 module.exports.DeletePost = async (req, res) => {
   try {
-    const id = req.user.id;
-    console.log(req.user.id);
+    // const id = req.user.id;
+    // console.log(req.user.id);
     
     const postId = req.params.id;
     const post = await Postmodel.findById(postId);
@@ -60,10 +60,10 @@ module.exports.DeletePost = async (req, res) => {
       return res.status(500).json({
         message: "Post not found",
       });
-    if (post.userId != id)
-      return res.status(500).json({
-        message: "You are not authorized to delete this post",
-      });
+    // if (post.userId != id)
+    //   return res.status(500).json({
+    //     message: "You are not authorized to delete this post",
+    //   });
     post.isDeleted = true;
     await post.save();
     res.status(200).json({
@@ -80,17 +80,17 @@ module.exports.DeletePost = async (req, res) => {
 
 module.exports.EditPost = async (req, res) => {
   try {
-    const id = req.user.id;
+    // const id = req.user.id;
     const postId = req.params.id;
     const post = await Postmodel.findById(postId);
     if (!post)
       return res.status(500).json({
         message: "Post not found",
       });
-    if (post.userId != id)
-      return res.status(500).json({
-        message: "You are not authorized to edit this post",
-      });
+    // if (post.userId != id)
+    //   return res.status(500).json({
+    //     message: "You are not authorized to edit this post",
+    //   });
     post.title = req.body.title;
     post.description = req.body.description;
     await post.save();
