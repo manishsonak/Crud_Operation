@@ -4,8 +4,6 @@ const mongoose=require('mongoose')
 const mongoConnection=()=>{
     mongoose.connect(process.env.MONGO_URL,{
         dbName:"CrudOperation",
-         useNewUrlParser: true,
-        useUnifiedTopology: true,
         serverSelectionTimeoutMS: 5000,
     }).then(()=>{
         console.log("Connected to MongoDB")
