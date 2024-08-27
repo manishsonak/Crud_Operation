@@ -16,10 +16,10 @@ app.use(express.urlencoded({extended:true}))
 
 
 const corsOptions = {
-    origin: '*', 
+    origin: 'https://authncrud.netlify.app/', // Your frontend origin
     methods: 'GET,POST,PUT,DELETE,OPTIONS',
     allowedHeaders: 'Content-Type,Authorization',
-    credentials: true, 
+    credentials: true, // Allow cookies to be sent and received
   };
   
   app.use(cors(corsOptions));
