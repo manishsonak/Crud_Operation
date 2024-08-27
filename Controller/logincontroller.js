@@ -106,21 +106,18 @@ module.exports.loginUser = async (req,res)=>{
  }
  
 
+ const sendCookie=(res,user,message)=>{
 
- const sendCookie = (res, user, message) => {
-   const token = jwt.sign({ id: user._id }, process.env.SCREATE_KEY);
- 
-   const cookieOptions = {
-     httpOnly: true,
-     secure: process.env.NODE_ENV === 'production',
-     sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Lax'
-   };
- 
-   res.cookie('token', token, cookieOptions).status(200).json({
-     message: message,
-     user: user
-   });
- };
+  
+    const token=jwt.sign({id:user._id},process.env.SCREATE_KEY)
+   
+
+    res.cookie("token",token,{httpOnly:true}).status(200).json({
+      message:message,
+      user:user,
+      token:token,
+    })
+  }
 
   module.exports.logout=async(req,res)=>{
 
