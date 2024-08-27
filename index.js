@@ -16,7 +16,7 @@ app.use(express.urlencoded({extended:true}))
 
 
 const corsOptions = {
-    origin: 'https://authncrud.netlify.app', // Your frontend origin
+    origin: 'http://localhost:5173', // Your frontend origin
     methods: 'GET,POST,PUT,DELETE,OPTIONS',
     allowedHeaders: 'Content-Type,Authorization',
     credentials: true, // Allow cookies to be sent and received
@@ -33,10 +33,10 @@ app.post('/login',loginUser)
 app.get('/logout',logout)
 
 
-app.post('/createpost',createPost)
-app.get('/user/posts',userPost)
-app.delete('/post/delete/:id',DeletePost)
-app.put('/post/edit/:id',EditPost)
+app.post('/createpost',isAuthanticate,createPost)
+app.get('/user/posts',isAuthanticate,userPost)
+app.delete('/post/delete/:id',isAuthanticate,DeletePost)
+app.put('/post/edit/:id',isAuthanticate,EditPost)
 
 
 
@@ -47,7 +47,7 @@ connection();
 
 
 app.listen(process.env.PORT || 4000,()=>{
-    console.log('Server is running on port ',process.env.PORT || 4000);
+    console.log('Server is running on port ',process.env.PORT);
 })
 
 
