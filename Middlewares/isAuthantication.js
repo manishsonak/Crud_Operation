@@ -12,6 +12,8 @@ module.exports.isAuthanticate = async (req, res, next) => {
         const decoded = jwt.verify(token, process.env.SCREATE_KEY); 
         
         req.user = decoded.id; 
+       
+        
 
         next(); 
     } catch (err) {

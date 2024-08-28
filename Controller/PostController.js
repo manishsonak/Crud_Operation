@@ -2,7 +2,9 @@ const Postmodel = require("../Models/Postmodel");
 module.exports.createPost = async (req, res) => {
   try {
     const { title, description } = req.body;
-    const id = req.user.id;
+    const id = req.user;
+    console.log(id);
+    
 
     const post = await Postmodel.create({
       title: title,
@@ -30,7 +32,7 @@ module.exports.createPost = async (req, res) => {
 
 module.exports.userPost = async (req, res) => {
   try {
-    const id = req.user.id;
+    const id = req.user;
     const post = await Postmodel.find({ userId: id, isDeleted: false });
     if (!post)
       return res.status(500).json({
