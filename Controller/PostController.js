@@ -53,8 +53,8 @@ module.exports.userPost = async (req, res) => {
 
 module.exports.DeletePost = async (req, res) => {
   try {
-    const id = req.user.id;
-    console.log(req.user.id);
+    const id = req.user;
+    
     
     const postId = req.params.id;
     const post = await Postmodel.findById(postId);
@@ -82,7 +82,7 @@ module.exports.DeletePost = async (req, res) => {
 
 module.exports.EditPost = async (req, res) => {
   try {
-    const id = req.user.id;
+    const id = req.user;
     const postId = req.params.id;
     const post = await Postmodel.findById(postId);
     if (!post)
