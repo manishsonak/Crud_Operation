@@ -112,7 +112,11 @@ module.exports.loginUser = async (req,res)=>{
     const token=jwt.sign({id:user._id},process.env.SCREATE_KEY)
    
 
-    res.cookie('token', token, { domain: 'https://authncrud.netlify.app/', httpOnly: true, secure: true, sameSite: 'None' }).status(200).json({
+    res.cookie('token', token, { 
+    httpOnly: true, 
+    secure: true,      
+    sameSite: 'None'    
+}).status(200).json({
       message:message,
       user:user,
       token:token,
