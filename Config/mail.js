@@ -33,10 +33,4 @@ const transporter =  nodemailer.createTransport({
 }
 
 
-// let info= await transporter.sendMail({
-//   from: 'manishsonak9@gmail.com',
-//   to: 'manishs20cse019@gmail.com',
-//   subject: 'Hello from Node.js',
-//   text: 'Hello world',
-//   html: '<b>Hello world</b>'
-// })
+
